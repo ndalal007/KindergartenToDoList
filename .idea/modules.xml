@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/KindergartenToDoList/KindergartenToDoList.iml" filepath="$PROJECT_DIR$/KindergartenToDoList/KindergartenToDoList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KindergartenToDoList/KindergartenToDoList-KindergartenToDoList.iml" filepath="$PROJECT_DIR$/KindergartenToDoList/KindergartenToDoList-KindergartenToDoList.iml" />
       <module fileurl="file://$PROJECT_DIR$/KindergartenToDoListProject.iml" filepath="$PROJECT_DIR$/KindergartenToDoListProject.iml" />
     </modules>
   </component>
