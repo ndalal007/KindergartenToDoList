@@ -13,17 +13,17 @@ public class ViewModel implements IViewModel{
     }
 
     @Override
-    public void addNewWorkItem(WorkItem newWorkItem) {
-
+    public void addNewWorkItem(WorkItem newWorkItem) throws Exception {
+        throw new Exception("Not implemented.");
     }
 
     @Override
-    public void updateWorkItem(WorkItem workItem) {
-
+    public void updateWorkItem(WorkItem workItem) throws Exception{
+        throw new Exception("Not implemented.");
     }
 
     @Override
-    public void deleteWorkItem(int id) {
-
+    public void deleteWorkItem(int id) throws Exception {
+        throw new Exception("Not implemented.");
     }
 }

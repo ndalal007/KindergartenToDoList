@@ -9,9 +9,9 @@ public interface IViewModel {
 
     List<WorkItem> getAllWorkItems();
 
-    void addNewWorkItem(WorkItem newWorkItem);
+    void addNewWorkItem(WorkItem newWorkItem) throws Exception;
 
-    void updateWorkItem(WorkItem workItem);
+    void updateWorkItem(WorkItem workItem) throws Exception;
 
-    void deleteWorkItem(int id);
+    void deleteWorkItem(int id) throws Exception;
 }
