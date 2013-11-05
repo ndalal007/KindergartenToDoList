@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
         super.onResume();
 
         if(vm == null)
-            vm = new ViewModel();
+            vm = new ViewModel(getApplicationContext());
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.mobilesig.kindergartentodolist;
 
+import android.content.Context;
+
 import java.util.List;
 
 /**
@@ -7,23 +9,31 @@ import java.util.List;
  */
 public class ViewModel implements IViewModel{
 
-    @Override
-    public List<WorkItem> getAllWorkItems() {
-        return null;
+    /* FIELDS */
+    private Model model = null;
+
+    public ViewModel(Context ctx)
+    {
+        model = new Model(ctx);
     }
 
     @Override
-    public void addNewWorkItem(WorkItem newWorkItem) throws Exception {
-        throw new Exception("Not implemented.");
+    public List<WorkItem> GetAllWorkItems() {
+        return model.GetAllWorkItems();
     }
 
     @Override
-    public void updateWorkItem(WorkItem workItem) throws Exception{
-        throw new Exception("Not implemented.");
+    public void AddWorkItem(WorkItem newWorkItem) throws Exception {
+        model.AddWorkItem(newWorkItem);
     }
 
     @Override
-    public void deleteWorkItem(int id) throws Exception {
-        throw new Exception("Not implemented.");
+    public int UpdateWorkItem(WorkItem workItem) {
+        return model.UpdateWorkItem(workItem);
+    }
+
+    @Override
+    public int DeleteWorkItem(int id) {
+        return model.DeleteWorkItem(id);
     }
 }

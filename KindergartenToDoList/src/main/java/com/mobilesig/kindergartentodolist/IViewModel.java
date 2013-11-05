@@ -7,11 +7,11 @@ import java.util.List;
  */
 public interface IViewModel {
 
-    List<WorkItem> getAllWorkItems();
+    List<WorkItem> GetAllWorkItems();
 
-    void addNewWorkItem(WorkItem newWorkItem) throws Exception;
+    void AddWorkItem(WorkItem newWorkItem) throws Exception;
 
-    void updateWorkItem(WorkItem workItem) throws Exception;
+    int UpdateWorkItem(WorkItem workItem);
 
-    void deleteWorkItem(int id) throws Exception;
+    int DeleteWorkItem(int id);
 }

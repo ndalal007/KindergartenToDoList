@@ -17,14 +17,27 @@ public class WorkItem {
 
     public StatusEnum Status;
 
-    public Date CreationTime;
+    public Date DueDate;
 
     public PriorityEnum Priority;
 
-    public WorkItem(String description, Date creationtime, PriorityEnum priority)
+    /* Constructor when creating a new workitem. */
+    public WorkItem(String description, Date duedate, PriorityEnum priority, StatusEnum status)
     {
         Description = description;
-        CreationTime = creationtime;
+        DueDate = duedate;
         Priority = priority;
+        Status = status;
     }
+
+    /* Constructor when creating from an existing workitem. */
+    public WorkItem(int id, String description, Date duedate, PriorityEnum priority, StatusEnum status)
+    {
+        Description = description;
+        DueDate = duedate;
+        Priority = priority;
+        Status = status;
+        Id = id;
+    }
+
 }
