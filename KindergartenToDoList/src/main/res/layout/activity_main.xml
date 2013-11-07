@@ -1,7 +1,43 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    tools:ignore="MergeRootFrame" />
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linearLayout_Buttons"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_margin="5dp"
+            android:id="@+id/buttonNew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New" />
+
+        <Button
+            android:layout_margin="5dp"
+            android:id="@+id/buttonEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit" />
+
+        <Button
+            android:layout_margin="5dp"
+            android:id="@+id/buttonDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listViewToDoItems"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:cacheColorHint="#00000000"
+        android:drawSelectorOnTop="false"
+        android:layout_above="@id/linearLayout_Buttons"/>
+
+</RelativeLayout>

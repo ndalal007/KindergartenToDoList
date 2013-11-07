@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" android:layout_gravity="center_horizontal|top">
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_loopPreview" android:layout_column="0"/>
+
+            <TextView android:id="@+id/txtView_rowDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:textColor="#000000"
+                android:padding="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp" android:layout_column="1"/>
+
+            <TextView android:id="@+id/txtView_rowDueDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:textColor="#000000"
+                android:padding="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp" android:layout_column="2"/>
+
+            <TextView android:id="@+id/txtView_rowPriority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:textColor="#000000"
+                android:padding="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp" android:layout_column="3"/>
+
+            <TextView android:id="@+id/txtView_rowStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:textColor="#000000"
+                android:padding="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp" android:layout_column="4"/>
+
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>
