@@ -14,4 +14,6 @@ public interface IViewModel {
     int UpdateWorkItem(WorkItem workItem);
 
     int DeleteWorkItem(int id);
+
+    void ResetDatabase();
 }

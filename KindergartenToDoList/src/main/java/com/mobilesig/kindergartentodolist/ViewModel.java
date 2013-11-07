@@ -36,4 +36,9 @@ public class ViewModel implements IViewModel{
     public int DeleteWorkItem(int id) {
         return model.DeleteWorkItem(id);
     }
+
+    @Override
+    public void ResetDatabase() {
+        model.ResetDatabase();
+    }
 }

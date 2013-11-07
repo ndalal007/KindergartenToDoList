@@ -10,7 +10,7 @@ import android.widget.Toast;
 import java.util.Calendar;
 import java.util.List;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements IToDoItemsArrayAdapterListener{
 
     /* FIELDS */
     ViewModel vm = null;
@@ -42,6 +42,19 @@ public class MainActivity extends Activity {
             }
         });
 
+        Button btnNukeIt = (Button) findViewById(R.id.buttonNukeDB);
+        btnNukeIt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    vm.ResetDatabase();
+                    TransferFromDBToGUI();
+                } catch (Exception ex) {
+                    Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         vm = new ViewModel(getApplicationContext());
         ToDoItems = vm.GetAllWorkItems();
 
@@ -51,14 +64,21 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onResume() {
-        super.onResume();
+        if(arrayAdapter != null)
+        {
+            arrayAdapter.addListener(this);
+        }
 
-        if (vm == null)
-            vm = new ViewModel(getApplicationContext());
+        super.onResume();
     }
 
     @Override
     protected void onPause() {
+        if(arrayAdapter != null)
+        {
+            arrayAdapter.removeListener(this);
+        }
+
         super.onPause();
     }
 
@@ -75,29 +95,40 @@ public class MainActivity extends Activity {
         }
     }
 
-    private void TestMethod() {
-        try {
-            /* Test Add */
-            WorkItem newWorkItem = new WorkItem("description1", Calendar.getInstance().getTime(), WorkItem.PriorityEnum.NORMAL, WorkItem.StatusEnum.PENDING);
-            vm.AddWorkItem(newWorkItem);
+    @Override
+    public void OnRequestDelete(WorkItem workItem) {
+        try
+        {
+            vm.DeleteWorkItem(workItem.Id);
+            TransferFromDBToGUI();
+        }
+        catch (Exception ex)
+        {
+            Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
 
-            // Test GetAll
-            List<WorkItem> allWorkItems = vm.GetAllWorkItems();
-            int count = allWorkItems.size();
+    @Override
+    public void OnRequestEdit(WorkItem workItem) {
+        try
+        {
+            vm.UpdateWorkItem(workItem);
+            TransferFromDBToGUI();
+        }
+        catch (Exception ex)
+        {
+            Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
 
-            // Test Edit
-            WorkItem currentItem = allWorkItems.get(0);
-            currentItem.Status = WorkItem.StatusEnum.DONE;
-            vm.UpdateWorkItem(currentItem);
-
-            allWorkItems = vm.GetAllWorkItems();
-            currentItem = allWorkItems.get(0);
-
-            // Test Delete
-            vm.DeleteWorkItem(allWorkItems.get(0).Id);
-
-            count = allWorkItems.size();
-        } catch (Exception ex) {
+    @Override
+    public void OnRequestAccept(WorkItem workItem) {
+        try
+        {
+        }
+        catch (Exception ex)
+        {
+            Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 }

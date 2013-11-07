@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_priority">
+        <item>@drawable/low</item>
+        <item>@drawable/normal</item>
+        <item>@drawable/high</item>
+    </string-array>
+
+    <string-array name="array_status">
+        <item>@drawable/notdone</item>
+        <item>@drawable/done</item>
+    </string-array>
+</resources>

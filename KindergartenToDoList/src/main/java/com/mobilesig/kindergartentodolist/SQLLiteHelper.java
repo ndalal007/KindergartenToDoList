@@ -27,6 +27,7 @@ public class SQLLiteHelper extends SQLiteOpenHelper implements IViewModel{
 
     // Contacts Table Columns names
     private static final String KEY_ID = "Id";
+
     private static final String KEY_DESCRIPTION = "Description";
     private static final String KEY_DUEDATE = "DueDate";
     private static final String KEY_PRIORITY = "Priority";
@@ -133,5 +134,13 @@ public class SQLLiteHelper extends SQLiteOpenHelper implements IViewModel{
         db.close();
 
         return workItems;
+    }
+
+    @Override
+    public void ResetDatabase() {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from "+ TABLE_TODOITEMS);
+        db.close();
     }
 }

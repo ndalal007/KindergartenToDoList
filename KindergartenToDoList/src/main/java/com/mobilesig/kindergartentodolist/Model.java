@@ -37,4 +37,9 @@ public class Model implements IModel{
     public int DeleteWorkItem(int id) {
         return dBHelper.DeleteWorkItem(id);
     }
+
+    @Override
+    public void ResetDatabase() {
+        dBHelper.ResetDatabase();
+    }
 }

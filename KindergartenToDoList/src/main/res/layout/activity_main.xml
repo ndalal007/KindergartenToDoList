@@ -30,6 +30,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Delete" />
+
+        <Button
+            android:layout_margin="5dp"
+            android:id="@+id/buttonNukeDB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nuke It!" />
+
     </LinearLayout>
 
     <ListView
