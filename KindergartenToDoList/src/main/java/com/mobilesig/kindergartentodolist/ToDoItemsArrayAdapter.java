@@ -98,6 +98,26 @@ public class ToDoItemsArrayAdapter extends ArrayAdapter<WorkItem> {
                 }
             });
 
+            holder.imgViewPriority.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    switch(workItem.Priority)
+                    {
+                        case LOW:
+                            workItem.Priority = WorkItem.PriorityEnum.NORMAL;
+                            break;
+                        case NORMAL:
+                            workItem.Priority = WorkItem.PriorityEnum.HIGH;
+                            break;
+                        case HIGH:
+                            workItem.Priority = WorkItem.PriorityEnum.LOW;
+                            break;
+                    }
+
+                view.setBackgroundResource(ConvertStatusToImage(workItem.Status));
+                }
+            });
+
         } catch (Exception ex) {
             Log.v("ToDoItemsArrayAdapter", ex.getMessage());
         }
