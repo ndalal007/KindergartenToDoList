@@ -2,6 +2,7 @@ package com.mobilesig.kindergartentodolist;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -84,8 +85,8 @@ public class ToDoItemsArrayAdapter extends ArrayAdapter<WorkItem> {
             holder.txtDescription.setText(workItem.Description);
             // format the datetime to something easier to read.
             holder.txtDueDate.setText(android.text.format.DateFormat.format("MM-dd", workItem.DueDate));
-            holder.imgViewPriority.setBackgroundResource(ConvertPriorityToImage(workItem.Priority));
-            holder.imgViewStatus.setBackgroundResource(ConvertStatusToImage(workItem.Status));
+            holder.imgViewPriority.setImageDrawable(ConvertPriorityToImage(workItem.Priority));
+            holder.imgViewStatus.setImageDrawable(ConvertStatusToImage(workItem.Status));
 
             // Subscribe to the button events.
             row.setClickable(true);
@@ -114,7 +115,7 @@ public class ToDoItemsArrayAdapter extends ArrayAdapter<WorkItem> {
                             break;
                     }
 
-                view.setBackgroundResource(ConvertStatusToImage(workItem.Status));
+                    ((ImageView)view).setImageDrawable(ConvertPriorityToImage(workItem.Priority));
                 }
             });
 
@@ -124,35 +125,35 @@ public class ToDoItemsArrayAdapter extends ArrayAdapter<WorkItem> {
         return row;
     }
 
-    private int ConvertPriorityToImage(WorkItem.PriorityEnum priority) {
-        int id = 0;
+    private Drawable ConvertPriorityToImage(WorkItem.PriorityEnum priority) {
+        Drawable drawable = null;
         switch (priority) {
             case LOW:
-                id = context.getResources().getIdentifier("low", "drawable", "com.mobilesig.kindergartentodolist");
+               drawable = context.getResources().getDrawable(R.drawable.low);
                 break;
             case NORMAL:
-                id = context.getResources().getIdentifier("normal", "drawable", "com.mobilesig.kindergartentodolist");
+                drawable = context.getResources().getDrawable(R.drawable.normal);
                 break;
             case HIGH:
-                id = context.getResources().getIdentifier("high", "drawable", "com.mobilesig.kindergartentodolist");
+                drawable = context.getResources().getDrawable(R.drawable.high);
                 break;
         }
 
-        return id;
+        return drawable;
     }
 
-    private int ConvertStatusToImage(WorkItem.StatusEnum status) {
-        int id = 0;
+    private Drawable ConvertStatusToImage(WorkItem.StatusEnum status) {
+        Drawable drawable = null;
         switch (status) {
             case PENDING:
-                id = context.getResources().getIdentifier("notdone", "drawable", "com.mobilesig.kindergartentodolist");
+                drawable = context.getResources().getDrawable(R.drawable.notdone);
                 break;
             case DONE:
-                id = context.getResources().getIdentifier("done", "drawable", "com.mobilesig.kindergartentodolist");
+                drawable = context.getResources().getDrawable(R.drawable.done);
                 break;
         }
 
-        return id;
+        return drawable;
     }
 
     static class ViewHolder {
