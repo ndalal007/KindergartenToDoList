@@ -112,8 +112,7 @@ public class MainActivity extends Activity implements IToDoItemsArrayAdapterList
     public void OnRequestEdit(WorkItem workItem) {
         try
         {
-            vm.UpdateWorkItem(workItem);
-            TransferFromDBToGUI();
+            arrayAdapter.notifyDataSetChanged();
         }
         catch (Exception ex)
         {
@@ -125,6 +124,9 @@ public class MainActivity extends Activity implements IToDoItemsArrayAdapterList
     public void OnRequestAccept(WorkItem workItem) {
         try
         {
+            vm.UpdateWorkItem(workItem);
+            workItem.IsEditing = false;
+            TransferFromDBToGUI();
         }
         catch (Exception ex)
         {

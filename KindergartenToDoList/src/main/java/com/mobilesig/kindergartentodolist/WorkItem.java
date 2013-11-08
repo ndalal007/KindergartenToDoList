@@ -21,6 +21,9 @@ public class WorkItem {
 
     public PriorityEnum Priority;
 
+    /* Flag to indicate whether this item is editable.  This is not stored in the DB.*/
+    public boolean IsEditing = false;
+
     /* Constructor when creating a new workitem. */
     public WorkItem(String description, Date duedate, PriorityEnum priority, StatusEnum status)
     {

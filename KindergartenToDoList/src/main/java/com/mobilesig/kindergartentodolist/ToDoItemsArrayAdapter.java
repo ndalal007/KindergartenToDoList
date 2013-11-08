@@ -54,6 +54,26 @@ public class ToDoItemsArrayAdapter extends ArrayAdapter<WorkItem> {
         }
     }
 
+    public synchronized void fireOnEditItem(WorkItem workItem) {
+        Iterator<IToDoItemsArrayAdapterListener> listeners = _listeners.iterator();
+        while (listeners.hasNext()) {
+            try {
+                ((IToDoItemsArrayAdapterListener) listeners.next()).OnRequestEdit(workItem);
+            } catch (Exception ex) {
+            }
+        }
+    }
+
+    public synchronized void fireOnCommitItem(WorkItem workItem) {
+        Iterator<IToDoItemsArrayAdapterListener> listeners = _listeners.iterator();
+        while (listeners.hasNext()) {
+            try {
+                ((IToDoItemsArrayAdapterListener) listeners.next()).OnRequestAccept(workItem);
+            } catch (Exception ex) {
+            }
+        }
+    }
+
     //--------- END EVENTS-----------------//
 
     @Override
@@ -71,9 +91,9 @@ public class ToDoItemsArrayAdapter extends ArrayAdapter<WorkItem> {
                 holder.txtDueDate = (TextView) row.findViewById(R.id.txtView_rowDueDate);
                 holder.imgViewPriority = (ImageView) row.findViewById(R.id.imageView_rowPriority);
                 holder.imgViewStatus = (ImageView) row.findViewById(R.id.imageView_rowStatus);
-                holder.btnDelete = (Button)row.findViewById(R.id.button_rowDelete);
-                holder.btnAccept = (Button)row.findViewById(R.id.button_rowAccept);
-                holder.btnEdit = (Button)row.findViewById(R.id.button_rowEdit);
+                holder.btnDelete = (Button) row.findViewById(R.id.button_rowDelete);
+                holder.btnAccept = (Button) row.findViewById(R.id.button_rowAccept);
+                holder.btnEdit = (Button) row.findViewById(R.id.button_rowEdit);
 
                 row.setTag(holder);
             } else {
@@ -88,9 +108,20 @@ public class ToDoItemsArrayAdapter extends ArrayAdapter<WorkItem> {
             holder.imgViewPriority.setImageDrawable(ConvertPriorityToImage(workItem.Priority));
             holder.imgViewStatus.setImageDrawable(ConvertStatusToImage(workItem.Status));
 
+            holder.btnAccept.setEnabled(workItem.IsEditing);
+            holder.btnDelete.setEnabled(!workItem.IsEditing);
+            holder.txtDescription.setEnabled(workItem.IsEditing);
+
             // Subscribe to the button events.
             row.setClickable(true);
             row.setFocusable(true);
+
+            holder.btnAccept.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    fireOnCommitItem(workItem);
+                }
+            });
 
             holder.btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -102,20 +133,59 @@ public class ToDoItemsArrayAdapter extends ArrayAdapter<WorkItem> {
             holder.imgViewPriority.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    switch(workItem.Priority)
-                    {
-                        case LOW:
-                            workItem.Priority = WorkItem.PriorityEnum.NORMAL;
-                            break;
-                        case NORMAL:
-                            workItem.Priority = WorkItem.PriorityEnum.HIGH;
-                            break;
-                        case HIGH:
-                            workItem.Priority = WorkItem.PriorityEnum.LOW;
-                            break;
-                    }
+                    if (workItem.IsEditing) {
+                        switch (workItem.Priority) {
+                            case LOW:
+                                workItem.Priority = WorkItem.PriorityEnum.NORMAL;
+                                break;
+                            case NORMAL:
+                                workItem.Priority = WorkItem.PriorityEnum.HIGH;
+                                break;
+                            case HIGH:
+                                workItem.Priority = WorkItem.PriorityEnum.LOW;
+                                break;
+                        }
 
-                    ((ImageView)view).setImageDrawable(ConvertPriorityToImage(workItem.Priority));
+                        ((ImageView) view).setImageDrawable(ConvertPriorityToImage(workItem.Priority));
+                    }
+                }
+            });
+
+            holder.imgViewStatus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (workItem.IsEditing == true) {
+                        switch (workItem.Status) {
+                            case PENDING:
+                                workItem.Status = WorkItem.StatusEnum.DONE;
+                                break;
+                            case DONE:
+                                workItem.Status = WorkItem.StatusEnum.PENDING;
+                                break;
+                        }
+
+                        ((ImageView) view).setImageDrawable(ConvertStatusToImage(workItem.Status));
+                    }
+                }
+            });
+
+            holder.btnEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    workItem.IsEditing = !workItem.IsEditing;
+
+                    fireOnEditItem(workItem);
+                }
+            });
+
+            // update the description when we lose focus.
+            holder.txtDescription.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View view, boolean isInFocus) {
+                    if(isInFocus == false)
+                    {
+                        workItem.Description = ((TextView)view).getText().toString();
+                    }
                 }
             });
 
@@ -129,7 +199,7 @@ public class ToDoItemsArrayAdapter extends ArrayAdapter<WorkItem> {
         Drawable drawable = null;
         switch (priority) {
             case LOW:
-               drawable = context.getResources().getDrawable(R.drawable.low);
+                drawable = context.getResources().getDrawable(R.drawable.low);
                 break;
             case NORMAL:
                 drawable = context.getResources().getDrawable(R.drawable.normal);

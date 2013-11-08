@@ -5,64 +5,71 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
-        <TextView android:id="@+id/txtView_rowDueDate"
-            android:layout_margin="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_alignParentLeft="true"
-            android:text="Date"/>
+    <TableLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:stretchColumns="1">
+        <TableRow>
 
-        <TextView
-            android:layout_margin="10dp"
-            android:id="@+id/txtView_rowDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="New Text"
-            android:layout_toRightOf="@id/txtView_rowDueDate"/>
+            <TextView android:id="@+id/txtView_rowDueDate"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_alignParentLeft="true"
+                android:text="Date"/>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/high"
-            android:layout_gravity="center_vertical"
-            android:id="@+id/imageView_rowPriority"
-            android:layout_toLeftOf="@+id/imageView_rowStatus" />
+            <EditText
+                android:layout_margin="10dp"
+                android:id="@+id/txtView_rowDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Enter Description Here"
+                android:layout_toRightOf="@id/txtView_rowDueDate"
+                android:enabled="false"/>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/notdone"
-            android:layout_gravity="center_vertical"
-            android:id="@+id/imageView_rowStatus"
-            android:layout_toLeftOf="@+id/button_rowEdit" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/high"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/imageView_rowPriority"
+                android:layout_toLeftOf="@+id/imageView_rowStatus" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:drawableLeft="@drawable/edit"
-            android:id="@+id/button_rowEdit"
-            android:layout_toLeftOf="@+id/button_rowAccept"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/notdone"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/imageView_rowStatus"
+                android:layout_toLeftOf="@+id/button_rowEdit" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/accept"
-            android:layout_gravity="center_vertical"
-            android:id="@+id/button_rowAccept"
-            android:layout_toLeftOf="@+id/button_rowDelete" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:drawableLeft="@drawable/edit"
+                android:id="@+id/button_rowEdit"
+                android:layout_toLeftOf="@+id/button_rowAccept"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/remove"
-            android:layout_gravity="center_vertical"
-            android:layout_alignParentRight="true"
-            android:id="@+id/button_rowDelete"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/accept"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/button_rowAccept"
+                android:layout_toLeftOf="@+id/button_rowDelete" />
 
-    </RelativeLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/remove"
+                android:layout_gravity="center_vertical"
+                android:layout_alignParentRight="true"
+                android:id="@+id/button_rowDelete"/>
+        </TableRow>
+
+        </TableLayout>
 
 </LinearLayout>
